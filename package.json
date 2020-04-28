@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "name": "stacking-sats-kraken",
+  "version": "0.1.0",
+  "description": "Use the Kraken API to stack sats",
+  "author": "Dennis Reimann <mail@dennisreimann.de>",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "stack-sats": "node index.js",
+    "test": "node index.js --validate"
+  },
+  "dependencies": {
+    "kraken-api": "1.0.0"
+  }
+}
