@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const assert = require('assert')
 const Kraken = require('kraken-api')
 
