@@ -37,12 +37,14 @@ const validate = process.argv[2] === '--validate'
 
   // Place order
   try {
-    const details = { pair, type: 'buy', ordertype: 'limit', price, volume, validate }
-    const { result: { descr: { order } }, txid } = await kraken.api('AddOrder', details)
+    const details = { pair, type: 'buy', ordertype: 'limit', price, volume }
+    if (validate) details.validate = true
+
+    const { result: { descr: { order }, txid } } = await kraken.api('AddOrder', details)
 
     console.log('💸  Placed order:', order, '/ TXID:', txid, '\n')
   } catch (err) {
-    console.error(`🚨  Failure:`, err.message, '\n')
+    console.log(`🚨  Failure:`, err.message, '\n')
   } finally {
     if (validate) console.warn('🚨  THIS WAS JUST A VALIDATION RUN, NO ORDER HAS BEEN PLACED!', '\n')
   }
