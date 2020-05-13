@@ -59,6 +59,35 @@ When you are good to go, execute this command in a regular interval:
 npm run stack-sats
 ```
 
-Now go wild and triggeer it via a weekly or even daily cron job.
+The best and easiest way is to wrap it all up in a shell script.
+This script can be triggered via cron job, e.g. weekly, daily or hourly.
+
+Here's a sample `stack-sats.sh` script:
+
+```sh
+#!/bin/bash
+set -e
+
+# hide deprecation warning
+export NODE_OPTIONS="--no-deprecation"
+
+export KRAKEN_API_KEY="apiKeyFromTheKrakenSettings"
+export KRAKEN_API_SECRET="privateKeyFromTheKrakenSettings"
+export KRAKEN_API_FIAT="USD"
+export KRAKEN_BUY_AMOUNT=21
+
+BASE_DIR=$(cd `dirname $0` && pwd)
+cd $BASE_DIR/stacking-sats-kraken
+result=$(npm run stack-sats 2>&1)
+echo $result
+
+# Optional: Send yourself an email
+recipient="satstacker@example.org"
+echo "Subject: Sats got stacked
+From: satstacker@example.org
+To: $recipient $result" | /usr/sbin/sendmail $recipient
+```
+
+Make it executable with `chmod +x stack-sats.sh` and go wild.
 
 [Stay humble!](https://twitter.com/matt_odell/status/1117222441867194374) 🙏
