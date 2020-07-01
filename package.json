@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "stacking-sats-kraken",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Use the Kraken API to stack sats",
   "author": "Dennis Reimann <mail@dennisreimann.de>",
   "license": "MIT",
