@@ -29,11 +29,9 @@ const validate = process.argv[2] === '--validate'
   // Calculate volume and adjust precision
   const volume = (amount / price).toFixed(8)
 
-  console.log('\n')
   console.log('💰  Balance:', fiatBalance, fiat, '/', cryptoBalance, crypto, '\n')
   console.log('📈  Ask:', ask, fiat)
   console.log('📉  Bid:', bid, fiat, '\n')
-  console.log('🧾  Order:', volume, crypto, 'at', price, fiat, '\n')
 
   // Place order
   try {
@@ -42,10 +40,10 @@ const validate = process.argv[2] === '--validate'
 
     const { result: { descr: { order }, txid } } = await kraken.api('AddOrder', details)
 
-    console.log('💸  Placed order:', order, '/ TXID:', txid, '\n')
+    console.log('💸  Order:', order)
+    if (txid) console.log('📎  Transaction ID:', txid.join(', '))
+    if (validate) console.log('\n🚨  THIS WAS JUST A VALIDATION RUN, NO ORDER HAS BEEN PLACED!')
   } catch (err) {
-    console.log(`🚨  Failure:`, err.message, '\n')
-  } finally {
-    if (validate) console.warn('🚨  THIS WAS JUST A VALIDATION RUN, NO ORDER HAS BEEN PLACED!', '\n')
+    console.log(`\n🚨  Failure:`, err.message)
   }
 })()

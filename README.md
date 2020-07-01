@@ -46,9 +46,8 @@ You should see something like this sample output:
 📈 Ask: 21000.2 USD
 📉 Bid: 21000.1 USD
 
-🧾 Order: 0.21212121 XBT at 21000.1 USD
-
-💸 Placed order: buy 0.21212121 XBTUSD @ limit 21000.1 / TXID: 2121212121
+💸 Order: buy 0.21212121 XBTUSD @ limit 21000.1
+📎 Transaction ID: 2121212121
 ```
 
 ## 🤑 Stack sats
