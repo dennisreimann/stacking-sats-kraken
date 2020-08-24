@@ -13,6 +13,13 @@ Also the version is fixed, so that unwanted changes do not slip in.
 
 However: Use this at your own risk and decide for yourself whether or not you want to run this script and its dependencies!
 
+## 🔑 API Key
+
+Obtain your Kraken API Key via [the API settings page](https://www.kraken.com/u/settings/api).
+Generate a new API key dedicated for stacking using the "Query Funds" and "Modify Orders" permissions:
+
+![Kraken API Key Permissions](./api-permissions.png)
+
 ## 📦 Setup
 
 Prerequisite: At least the current LTS version of [Node.js](https://nodejs.org/).
