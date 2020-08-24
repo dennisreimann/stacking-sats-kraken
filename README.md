@@ -97,3 +97,32 @@ To: $recipient $result" | /usr/sbin/sendmail $recipient
 Make it executable with `chmod +x stack-sats.sh` and go wild.
 
 [Stay humble!](https://twitter.com/matt_odell/status/1117222441867194374) 🙏
+
+## ⚡️ RaspiBlitz Integration
+
+This script ships with the [RaspiBlitz](https://github.com/rootzoll/raspiblitz) (v1.6 and above).
+
+You can enable it via the Console of your RaspiBlitz.
+Leave the main menu via the last option "Console" and use the following commands:
+
+```sh
+# enable the script
+./config.scripts/bonus.stacking-sats-kraken.sh on
+
+# switch to the stackingsats user
+sudo su - stackingsats
+
+# edit your configuration (see "Setup" above)
+nano /mnt/hdd/app-data/stacking-sats-kraken/.env
+
+# follow the instructions from the first step to set up a cronjob
+crontab -e
+```
+
+Here is an example for a daily cronjob at 6:15am ...
+
+```sh
+SHELL=/bin/bash
+PATH=/bin:/usr/sbin:/usr/bin:/usr/local/bin
+15 6 * * * /home/stackingsats/stacksats.sh > /dev/null 2>&1
+```
