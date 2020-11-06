@@ -8,6 +8,7 @@
   "main": "index.js",
   "scripts": {
     "stack-sats": "node index.js",
+    "withdraw-sats": "node withdraw.js",
     "test": "node index.js --validate"
   },
   "dependencies": {
