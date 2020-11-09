@@ -5,12 +5,12 @@
   "description": "Use the Kraken API to stack sats",
   "author": "Dennis Reimann <mail@dennisreimann.de>",
   "license": "MIT",
-  "main": "index.js",
+  "main": "stack.js",
   "scripts": {
-    "stack-sats": "node index.js",
+    "stack-sats": "node stack.js",
     "withdraw-sats": "node withdraw.js",
-    "test-withdraw-sats": "node withdraw.js --validate",
-    "test": "node index.js --validate"
+    "test:stack-sats": "node stack.js --validate",
+    "test:withdraw-sats": "node withdraw.js --validate"
   },
   "dependencies": {
     "kraken-api": "1.0.0"
