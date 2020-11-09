@@ -24,7 +24,7 @@ Holding significant amounts on an exchange is never a good idea. You should regu
 
 You need to install the dependency [kraken-api](https://github.com/nothingisdead/npm-kraken-api), which is a third-party package.
 It has a minimal set of dependencies and I've done my best to audit its code.
-Also the version is fixed, so that unwanted ch<anges do not slip in.
+Also the version is fixed, so that unwanted changes do not slip in.
 
 However: Use this at your own risk and decide for yourself whether or not you want to run this script and its dependencies!
 
