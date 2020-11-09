@@ -9,6 +9,7 @@
   "scripts": {
     "stack-sats": "node index.js",
     "withdraw-sats": "node withdraw.js",
+    "test-withdraw-sats": "node withdraw.js --validate",
     "test": "node index.js --validate"
   },
   "dependencies": {
