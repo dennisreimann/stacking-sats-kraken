@@ -113,21 +113,21 @@ You should regularly take ownership of your coins by withdrawing to your own wal
 This can either be done manually or it can be automated.
 The script provided here will only withdraw to a previously defined Bitcoin address if the relative fees do not exceed a certain limit.
 
-*It is optional to run the witdrawal script.*
+*It is optional to run the withdrawal script.*
 
 ### Example 1
 
 - Max. relative fee: 0.5%
 - Fixed Kraken fee: ₿ 0.00050
 - Balance: ₿ 0.06000
-- \> No withdrawal since fee actual (0.83%) is too high
+➡️ No withdrawal since fee actual (0.83%) is too high
 
 ### Example 2
 
 - Max. relative fee: 0.5%
 - Fixed Kraken fee: ₿ 0.00050
 - Balance: ₿ 0.12000
-- \> Withdrawal executed since actual fee (0.42%) is low enough
+➡️ Withdrawal executed since actual fee (0.42%) is low enough
 
 In case you plan to automatically withdraw from Kraken, a withdrawal method must first be defined.
 If you already set up a methode you can reuse it.
@@ -144,9 +144,7 @@ You should see something like this:
 
 ```text
 💡  Relative fee of withdrawal amount: 5.57%
-❌  Don't withdraw now. Fee is too high – max rel. fee: 0.50%
-
-🚨  THIS WAS JUST A VALIDATION RUN, NO WITHDRAWAL HAS BEEN PLACED!
+❌  Fee is too high – max rel. fee: 0.50%
 ```
 
 It is recommended to run the withdrawal script every time you stacked sats:
@@ -155,7 +153,7 @@ It is recommended to run the withdrawal script every time you stacked sats:
 npm run withdraw-sats
 ```
 
-Since it can take a couple seconds or minutes for your order to fill, you should run the following script maybe a couple hours later after your `stack-sats` script ran.
+Since it can take a couple seconds or minutes for your order to fill, you should run the following script a couple hours later after your `stack-sats` script.
 Just set up a second cron job which executes the following script.
 
 Here's a sample `withdraw-sats.sh` script:
