@@ -3,12 +3,15 @@ module.exports = async (kraken, validate, getEnv) => {
 
   // https://www.kraken.com/features/api
   const crypto = 'XBT'
-  const pair = `X${crypto}Z${fiat}`
+  const pair = `${crypto}${fiat}`
 
   // Fetch and display information
-  const { result: { [`Z${fiat}`]: fiatBalance, [`X${crypto}`]: cryptoBalance } } = await kraken.api('Balance')
-  const { result: { [pair]: { a: [a], b: [b] } } } = await kraken.api('Ticker', { pair })
+  const { result: balance } = await kraken.api('Balance')
+  const { result: ticker } = await kraken.api('Ticker', { pair })
 
+  const fiatBalance = balance[`Z${fiat}`] || balance[fiat] || 0.0
+  const cryptoBalance = balance[`X${crypto}`] || balance[crypto] || 0.0
+  const [{ a: [a], b: [b] }] = Object.values(ticker)
   const ask = parseFloat(a)
   const bid = parseFloat(b)
   const price = bid
