@@ -39,18 +39,23 @@ Setup the environment variables for the script:
 # used to authenticate with Kraken
 export KRAKEN_API_KEY="apiKeyFromTheKrakenSettings"
 export KRAKEN_API_SECRET="privateKeyFromTheKrakenSettings"
+
 # used for buying
 export KRAKEN_API_FIAT="USD" # the governmental shitcoin you are selling
 export KRAKEN_BUY_AMOUNT=21 # fiat amount you trade for the future of money
+
 # used for withdrawal
 export KRAKEN_MAX_REL_FEE=0.5 # maximum fee in % that you are willing to pay
 export KRAKEN_WITHDRAW_KEY="descriptionOfWithdrawalAddress"
+
+# remove this line after verifying everything works
+export KRAKEN_DRY_RUN_PLACE_NO_ORDER=1
 ```
 
 Use a dry run to test the script and see the output without placing an order:
 
 ```sh
-npm run test:stack-sats
+npm run test:stack
 ```
 
 You should see something like this sample output:
@@ -70,13 +75,13 @@ You should see something like this sample output:
 When you are good to go, execute this command in a regular interval:
 
 ```sh
-npm run stack-sats
+npm run stack
 ```
 
 The best and easiest way is to wrap it all up in a shell script.
 This script can be triggered via cron job, e.g. weekly, daily or hourly.
 
-Here's a sample `stack-sats.sh` script:
+Here's a sample `stacksats.sh` script:
 
 ```sh
 #!/bin/bash
@@ -89,20 +94,30 @@ export KRAKEN_API_KEY="apiKeyFromTheKrakenSettings"
 export KRAKEN_API_SECRET="privateKeyFromTheKrakenSettings"
 export KRAKEN_API_FIAT="USD"
 export KRAKEN_BUY_AMOUNT=21
+export KRAKEN_MAX_REL_FEE=0.5
+export KRAKEN_WITHDRAW_KEY="descriptionOfWithdrawalAddress"
+export KRAKEN_DRY_RUN_PLACE_NO_ORDER=1
 
+# run script
 BASE_DIR=$(cd `dirname $0` && pwd)
 cd $BASE_DIR/stacking-sats-kraken
-result=$(npm run stack-sats 2>&1)
-echo $result
+cmd=${1:-"stack"}
 
-# Optional: Send yourself an email
+if [[ "${KRAKEN_DRY_RUN_PLACE_NO_ORDER}" ]]; then
+  result=$(npm run test:$cmd --silent 2>&1)
+else
+  result=$(npm run $cmd --silent 2>&1)
+fi
+echo "$result"
+
+# optional: send yourself an email
 recipient="satstacker@example.org"
 echo "Subject: Sats got stacked
 From: satstacker@example.org
 To: $recipient $result" | /usr/sbin/sendmail $recipient
 ```
 
-Make it executable with `chmod +x stack-sats.sh` and go wild.
+Make it executable with `chmod +x stacksats.sh` and go wild.
 
 [Stay humble!](https://twitter.com/matt_odell/status/1117222441867194374) 🙏
 
@@ -137,7 +152,7 @@ The description field will later be used as an environment variable in the scrip
 To test the withdrawal of funds to your defined address run:
 
 ```sh
-npm run test:withdraw-sats
+npm run test:withdraw
 ```
 
 You should see something like this:
@@ -150,33 +165,14 @@ You should see something like this:
 It is recommended to run the withdrawal script every time you stacked sats:
 
 ```sh
-npm run withdraw-sats
+npm run withdraw
 ```
 
-Since it can take a couple seconds or minutes for your order to fill, you should run the following script a couple hours later after your `stack-sats` script.
-Just set up a second cron job which executes the following script.
+Since it can take a couple seconds or minutes for your order to fill, you should run the following script a couple hours later after the stacking script.
+Just set up a second cron job which executes the withdrawal script.
 
-Here's a sample `withdraw-sats.sh` script:
-
-```sh
-#!/bin/bash
-set -e
-
-# hide deprecation warning
-export NODE_OPTIONS="--no-deprecation"
-
-export KRAKEN_API_KEY="apiKeyFromTheKrakenSettings"
-export KRAKEN_API_SECRET="privateKeyFromTheKrakenSettings"
-export KRAKEN_MAX_REL_FEE=0.5
-export KRAKEN_WITHDRAW_KEY="descriptionOfWithdrawalAddress"
-
-BASE_DIR=$(cd `dirname $0` && pwd)
-cd $BASE_DIR/stacking-sats-kraken
-result=$(npm run withdraw-sats 2>&1)
-echo $result
-```
-
-Make it executable with `chmod +x withdraw-sats.sh` and add it to your cron schedule.
+If you are using the aforementioned `stacksats.sh` script you can withdraw via this command:
+`stacksats.sh withdraw`
 
 ## ⚡️ RaspiBlitz Integration
 

@@ -7,10 +7,10 @@
   "license": "MIT",
   "main": "stack.js",
   "scripts": {
-    "stack-sats": "node index.js --cmd=stack",
-    "withdraw-sats": "node index.js --cmd=withdraw",
-    "test:stack-sats": "node index.js --cmd=stack --validate",
-    "test:withdraw-sats": "node index.js --cmd=withdraw --validate"
+    "stack": "node index.js --cmd=stack",
+    "withdraw": "node index.js --cmd=withdraw",
+    "test:stack": "node index.js --cmd=stack --validate",
+    "test:withdraw": "node index.js --cmd=withdraw --validate"
   },
   "dependencies": {
     "kraken-api": "1.0.0"
