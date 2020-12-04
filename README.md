@@ -23,7 +23,40 @@ Generate a new API key dedicated for stacking using the "Query Funds" and "Modif
 Only check the "Withdraw Funds" option if you plan to automatically withdraw Bitcoin from Kraken.
 See details below.
 
-## 📦 Setup
+## ⚡️ RaspiBlitz Integration
+
+This script ships with the [RaspiBlitz](https://github.com/rootzoll/raspiblitz) (v1.6 and above).
+
+You can enable it via the Console of your RaspiBlitz.
+Leave the main menu via the last option "Console" and use the following commands:
+
+```sh
+# enable the script
+./config.scripts/bonus.stacking-sats-kraken.sh on
+
+# switch to the stackingsats user
+sudo su - stackingsats
+
+# edit your configuration (see "Setup" above)
+nano /mnt/hdd/app-data/stacking-sats-kraken/.env
+
+# follow the instructions from the first step to set up a cronjob
+crontab -e
+```
+
+Here is an example for a daily cronjob at 6:15am ...
+
+```sh
+SHELL=/bin/bash
+PATH=/bin:/usr/sbin:/usr/bin:/usr/local/bin
+15 6 * * * /home/stackingsats/stacksats.sh > /dev/null 2>&1
+```
+
+**Note:** Do not run `npm` directly on the RaspiBlitz, like show in the examples below. Please use the `stacksats.sh` shell script instead, as this loads your configuration.
+
+- - -
+
+## 📦 Custom Setup
 
 Prerequisite: At least the current LTS version of [Node.js](https://nodejs.org/).
 
@@ -173,32 +206,3 @@ Just set up a second cron job which executes the withdrawal script.
 
 If you are using the aforementioned `stacksats.sh` script you can withdraw via this command:
 `stacksats.sh withdraw`
-
-## ⚡️ RaspiBlitz Integration
-
-This script ships with the [RaspiBlitz](https://github.com/rootzoll/raspiblitz) (v1.6 and above).
-
-You can enable it via the Console of your RaspiBlitz.
-Leave the main menu via the last option "Console" and use the following commands:
-
-```sh
-# enable the script
-./config.scripts/bonus.stacking-sats-kraken.sh on
-
-# switch to the stackingsats user
-sudo su - stackingsats
-
-# edit your configuration (see "Setup" above)
-nano /mnt/hdd/app-data/stacking-sats-kraken/.env
-
-# follow the instructions from the first step to set up a cronjob
-crontab -e
-```
-
-Here is an example for a daily cronjob at 6:15am ...
-
-```sh
-SHELL=/bin/bash
-PATH=/bin:/usr/sbin:/usr/bin:/usr/local/bin
-15 6 * * * /home/stackingsats/stacksats.sh > /dev/null 2>&1
-```
