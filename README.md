@@ -120,9 +120,6 @@ Here's a sample `stacksats.sh` script:
 #!/bin/bash
 set -e
 
-# hide deprecation warning
-export NODE_OPTIONS="--no-deprecation"
-
 export KRAKEN_API_KEY="apiKeyFromTheKrakenSettings"
 export KRAKEN_API_SECRET="privateKeyFromTheKrakenSettings"
 export KRAKEN_API_FIAT="USD"

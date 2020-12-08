@@ -13,6 +13,6 @@
     "test:withdraw": "node index.js --cmd=withdraw --validate"
   },
   "dependencies": {
-    "kraken-api": "1.0.0"
+    "kraken-api": "1.0.1"
   }
 }
