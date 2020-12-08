@@ -129,8 +129,7 @@ export KRAKEN_WITHDRAW_KEY="descriptionOfWithdrawalAddress"
 export KRAKEN_DRY_RUN_PLACE_NO_ORDER=1
 
 # run script
-BASE_DIR=$(cd `dirname $0` && pwd)
-cd $BASE_DIR/stacking-sats-kraken
+cd $(cd `dirname $0` && pwd)
 cmd=${1:-"stack"}
 
 if [[ "${KRAKEN_DRY_RUN_PLACE_NO_ORDER}" ]]; then
