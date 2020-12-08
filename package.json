@@ -4,8 +4,14 @@
   "version": "0.3.0",
   "description": "Use the Kraken API to stack sats",
   "author": "Dennis Reimann <mail@dennisreimann.de>",
+  "homepage": "https://github.com/dennisreimann/stacking-sats-kraken",
+  "bugs": "https://github.com/dennisreimann/stacking-sats-kraken/issues",
+  "funding": "https://github.com/dennisreimann/stacking-sats-kraken?sponsor=1",
   "license": "MIT",
   "main": "stack.js",
+  "engines": {
+    "node": ">=14.15"
+  },
   "scripts": {
     "stack": "node index.js --cmd=stack",
     "withdraw": "node index.js --cmd=withdraw",
