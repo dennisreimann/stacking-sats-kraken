@@ -23,6 +23,27 @@ Generate a new API key dedicated for stacking using the "Query Funds" and "Modif
 Only check the "Withdraw Funds" option if you plan to automatically withdraw Bitcoin from Kraken.
 See details below.
 
+## ⚙️ Configuration
+
+These are the environment variables used by the script:
+
+```sh
+# used to authenticate with Kraken
+KRAKEN_API_KEY="apiKeyFromTheKrakenSettings"
+KRAKEN_API_SECRET="privateKeyFromTheKrakenSettings"
+
+# used for buying
+KRAKEN_API_FIAT="USD" # the governmental shitcoin you are selling
+KRAKEN_BUY_AMOUNT=21 # fiat amount you trade for the future of money
+
+# used for withdrawal
+KRAKEN_MAX_REL_FEE=0.5 # maximum fee in % that you are willing to pay
+KRAKEN_WITHDRAW_KEY="descriptionOfWithdrawalAddress"
+
+# remove this line after verifying everything works
+KRAKEN_DRY_RUN_PLACE_NO_ORDER=1
+```
+
 ## ⚡️ RaspiBlitz Integration
 
 This script ships with the [RaspiBlitz](https://github.com/rootzoll/raspiblitz) (v1.6 and above).
@@ -37,7 +58,7 @@ Leave the main menu via the last option "Console" and use the following commands
 # switch to the stackingsats user
 sudo su - stackingsats
 
-# edit your configuration (see "Setup" above)
+# edit your configuration (see the "Configuration" section above)
 nano /mnt/hdd/app-data/stacking-sats-kraken/.env
 
 # follow the instructions from the first step to set up a cronjob
@@ -49,10 +70,21 @@ Here is an example for a daily cronjob at 6:15am ...
 ```sh
 SHELL=/bin/bash
 PATH=/bin:/usr/sbin:/usr/bin:/usr/local/bin
-15 6 * * * /home/stackingsats/stacksats.sh > /dev/null 2>&1
+15 6 * * * /home/stackingsats/stacking-sats-kraken/stacksats.sh > /dev/null 2>&1
 ```
 
-**Note:** Do not run `npm` directly on the RaspiBlitz, like show in the examples below. Please use the `stacksats.sh` shell script instead, as this loads your configuration.
+**Note:** Do not run `npm` directly on the RaspiBlitz, like show in the examples below.
+Please use the `/home/stackingsats/stacking-sats-kraken/stacksats.sh` shell script instead, as this loads your configuration.
+
+To run the script manually, switch to the `stackingsats` user and use this command:
+
+```sh
+# switch to the stackingsats user
+sudo su - stackingsats
+
+# run the script
+./stacking-sats-kraken/stacksats.sh
+```
 
 - - -
 
@@ -66,24 +98,8 @@ Install the dependencies:
 npm install
 ```
 
-Setup the environment variables for the script:
-
-```sh
-# used to authenticate with Kraken
-export KRAKEN_API_KEY="apiKeyFromTheKrakenSettings"
-export KRAKEN_API_SECRET="privateKeyFromTheKrakenSettings"
-
-# used for buying
-export KRAKEN_API_FIAT="USD" # the governmental shitcoin you are selling
-export KRAKEN_BUY_AMOUNT=21 # fiat amount you trade for the future of money
-
-# used for withdrawal
-export KRAKEN_MAX_REL_FEE=0.5 # maximum fee in % that you are willing to pay
-export KRAKEN_WITHDRAW_KEY="descriptionOfWithdrawalAddress"
-
-# remove this line after verifying everything works
-export KRAKEN_DRY_RUN_PLACE_NO_ORDER=1
-```
+Setup the environment variables for the script.
+See the [config section above](#-configuration).
 
 Use a dry run to test the script and see the output without placing an order:
 
