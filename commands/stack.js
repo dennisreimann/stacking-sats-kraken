@@ -1,5 +1,6 @@
-module.exports = async (kraken, validate, getEnv) => {
+module.exports = async (kraken, validate, { getEnv, getEnvOpt }) => {
   const [fiat, amount] = getEnv('KRAKEN_API_FIAT', 'KRAKEN_BUY_AMOUNT')
+  const ordertype = getEnvOpt('KRAKEN_ORDER_TYPE', 'limit', ['limit', 'market'])
 
   // https://www.kraken.com/features/api
   const crypto = 'XBT'
@@ -24,7 +25,7 @@ module.exports = async (kraken, validate, getEnv) => {
   console.log('📉  Bid:', bid, fiat, '\n')
 
   // Place order
-  const details = { pair, type: 'buy', ordertype: 'limit', price, volume }
+  const details = { pair, type: 'buy', ordertype, price, volume }
   if (validate) details.validate = true
 
   const { result: { descr: { order }, txid } } = await kraken.api('AddOrder', details)

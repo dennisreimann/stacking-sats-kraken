@@ -33,6 +33,7 @@ KRAKEN_API_KEY="apiKeyFromTheKrakenSettings"
 KRAKEN_API_SECRET="privateKeyFromTheKrakenSettings"
 
 # used for buying
+KRAKEN_ORDER_TYPE="market" # "limit" (default) or "market"
 KRAKEN_API_FIAT="USD" # the governmental shitcoin you are selling
 KRAKEN_BUY_AMOUNT=21 # fiat amount you trade for the future of money
 
@@ -138,6 +139,7 @@ set -e
 
 export KRAKEN_API_KEY="apiKeyFromTheKrakenSettings"
 export KRAKEN_API_SECRET="privateKeyFromTheKrakenSettings"
+export KRAKEN_ORDER_TYPE="market"
 export KRAKEN_API_FIAT="USD"
 export KRAKEN_BUY_AMOUNT=21
 export KRAKEN_MAX_REL_FEE=0.5
