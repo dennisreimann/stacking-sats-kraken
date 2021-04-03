@@ -41,6 +41,10 @@ KRAKEN_BUY_AMOUNT=21 # fiat amount you trade for the future of money
 KRAKEN_MAX_REL_FEE=0.5 # maximum fee in % that you are willing to pay
 KRAKEN_WITHDRAW_KEY="descriptionOfWithdrawalAddress"
 
+# set this if you live in Germany and get the 'EOrder:Trading agreement required' error
+# see https://support.kraken.com/hc/en-us/articles/360000920026--Trading-agreement-required-error-for-German-residents
+KRAKEN_GERMANY_TRADING_AGREEMENT="agree"
+
 # remove this line after verifying everything works
 KRAKEN_DRY_RUN_PLACE_NO_ORDER=1
 ```
