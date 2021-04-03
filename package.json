@@ -11,9 +11,6 @@
   },
   "license": "MIT",
   "main": "stack.js",
-  "engines": {
-    "node": ">=14.15"
-  },
   "scripts": {
     "stack": "node index.js --cmd=stack",
     "withdraw": "node index.js --cmd=withdraw",
