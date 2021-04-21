@@ -17,7 +17,7 @@ const validate = process.argv.includes('--validate') || process.env['KRAKEN_DRY_
 ;(async () => {
   try {
     const [apiKey, secret] = getEnv('KRAKEN_API_KEY', 'KRAKEN_API_SECRET')
-    const kraken = new Kraken(apiKey, secret)
+    const kraken = new Kraken(apiKey, secret, { timeout: 30000 })
 
     const cmd = require(`./commands/${command}`)
     await cmd(kraken, validate, { getEnv, getEnvOpt })
