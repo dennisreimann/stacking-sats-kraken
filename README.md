@@ -5,6 +5,13 @@ First off: Here's to you, [Bittr](https://getbittr.com/) – you will be missed!
 This script is not a full replacement for the incredible service Bittr offered, but it's a start:
 Automate your Stacking Sats process by regularly placing buy orders using the [Kraken API](https://www.kraken.com/features/api).
 
+---
+
+The original [Bittr is back](https://getbittr.com/press-releases/bittr-is-back)!
+This script is still fully working.
+
+---
+
 ## ✋ Caveat
 
 You need to install the dependency [kraken-api](https://github.com/nothingisdead/npm-kraken-api), which is a third-party package.
