@@ -38,6 +38,11 @@ module.exports = async (kraken, validate, { getEnv, getEnvOpt }) => {
   console.log('📈  Ask:', ask, fiat)
   console.log('📉  Bid:', bid, fiat, '\n')
 
+  if (parseFloat(fiatBalance) < parseFloat(amount)) {
+    console.log('❌  Insufficient funds')
+    return
+  }
+
   // Place order
   const details = { pair, type: 'buy', ordertype, price, volume }
   if (validate) details.validate = true
