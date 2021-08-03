@@ -38,21 +38,20 @@ module.exports = async (kraken, validate, { getEnv, getEnvOpt }) => {
   console.log('📈  Ask:', ask, fiat)
   console.log('📉  Bid:', bid, fiat, '\n')
 
-  //console.log(fiatBalance <= 0.01)
-  if(fiatBalance <= 0.01) {
-    console.log('insuficient funds.', '\n')
-  } else {
-
-    // Place order
-    const details = { pair, type: 'buy', ordertype, price, volume }
-    if (validate) details.validate = true
-    if (trading_agreement) details.trading_agreement = trading_agreement
-    if (fee) details.oflags = fee
-
-    const { result: { descr: { order }, txid } } = await kraken.api('AddOrder', details)
-
-    console.log('💸  Order:', order)
-    if (txid) console.log('📎  Transaction ID:', txid.join(', '))
-
+  if (parseFloat(fiatBalance) < parseFloat(amount)) {
+    console.log('❌  Insufficient funds')
+    return
   }
+
+  // Place order
+  const details = { pair, type: 'buy', ordertype, price, volume }
+  if (validate) details.validate = true
+  if (trading_agreement) details.trading_agreement = trading_agreement
+  if (fee) details.oflags = fee
+
+  const { result: { descr: { order }, txid } } = await kraken.api('AddOrder', details)
+
+  console.log('💸  Order:', order)
+  if (txid) console.log('📎  Transaction ID:', txid.join(', '))
+
 }
