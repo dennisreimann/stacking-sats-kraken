@@ -53,5 +53,4 @@ module.exports = async (kraken, validate, { getEnv, getEnvOpt }) => {
 
   console.log('💸  Order:', order)
   if (txid) console.log('📎  Transaction ID:', txid.join(', '))
-
 }
