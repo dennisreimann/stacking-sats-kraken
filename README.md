@@ -159,6 +159,7 @@ export KRAKEN_BUY_AMOUNT=21
 export KRAKEN_MAX_REL_FEE=0.5
 export KRAKEN_WITHDRAW_KEY="descriptionOfWithdrawalAddress"
 export KRAKEN_DRY_RUN_PLACE_NO_ORDER=1
+export KRAKEN_BUY_RATIO=0.99
 
 # run script
 cd $(cd `dirname $0` && pwd)
