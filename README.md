@@ -44,6 +44,7 @@ KRAKEN_ORDER_TYPE="market" # "limit" (default) or "market"
 KRAKEN_API_FIAT="USD" # the governmental shitcoin you are selling
 KRAKEN_BUY_AMOUNT=21 # fiat amount you trade for the future of money
 KRAKEN_FEE_CURRENCY="XBT" # pay fee in this currency, e.g. buying XBT for USD and paying fee in XBT
+#KRAKEN_BUY_RATIO=0.99 # place order at 99% of current bid price, e.g. to ensure maker fees
 
 # used for withdrawal
 KRAKEN_MAX_REL_FEE=0.5 # maximum fee in % that you are willing to pay
@@ -88,6 +89,7 @@ PATH=/bin:/usr/sbin:/usr/bin:/usr/local/bin
 
 **Note:** Do not run `npm` directly on the RaspiBlitz, like show in the examples below.
 Please use the `/home/stackingsats/stacking-sats-kraken/stacksats.sh` shell script instead, as this loads your configuration.
+On RaspiBlitz (v1.8 and above) you may use different configuration files for e.g. family or business.
 
 To run the script manually, switch to the `stackingsats` user and use this command:
 
@@ -157,6 +159,7 @@ export KRAKEN_BUY_AMOUNT=21
 export KRAKEN_MAX_REL_FEE=0.5
 export KRAKEN_WITHDRAW_KEY="descriptionOfWithdrawalAddress"
 export KRAKEN_DRY_RUN_PLACE_NO_ORDER=1
+export KRAKEN_BUY_RATIO=0.99
 
 # run script
 cd $(cd `dirname $0` && pwd)
