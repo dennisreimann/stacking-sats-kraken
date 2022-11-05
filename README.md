@@ -23,7 +23,7 @@ However: Use this at your own risk and decide for yourself whether or not you wa
 ## 🔑 API Key
 
 Obtain your Kraken API Key via [the API settings page](https://www.kraken.com/u/security/api).
-Generate a new API key dedicated for stacking using the "Query Funds" and "Modify Orders" permissions:
+Generate a new API key dedicated for stacking using the "Query Funds" and "Create and modify orders" permissions:
 
 ![Kraken API Key Permissions](./api-permissions.png)
 
