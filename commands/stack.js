@@ -1,6 +1,6 @@
 module.exports = async (kraken, validate, { getEnv, getEnvOpt }) => {
   const [crypto, fiat, amount, feeCurrency] = getEnv('KRAKEN_API_CRYPTO', 'KRAKEN_API_FIAT', 'KRAKEN_BUY_AMOUNT', 'KRAKEN_FEE_CURRENCY')
-  const ratio = getEnvOpt('KRAKEN_BUY_RATIO', '1.0'
+  const ratio = getEnvOpt('KRAKEN_BUY_RATIO', '1.0')
   const ordertype = getEnvOpt('KRAKEN_ORDER_TYPE', 'limit', ['limit', 'market'])
   // if living in Germany, one needs to add an additional parameter to explicitly agree to the trade
   // if the parameter is not set one will get the following error: EOrder:Trading agreement required
